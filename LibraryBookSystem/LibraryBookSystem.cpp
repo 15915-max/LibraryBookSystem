@@ -1,6 +1,10 @@
-﻿#include "Book.h" /* Add Book class skeleton with attributes and setBookDetails*/
+﻿#include <iostream>
+#include "Book.h"
+using namespace std;
 
 int main() {
+
+    // Create book list (5 books)
     Book library[5];
 
     library[0].setBookDetails("Introduction of IT", "Lara Smith", "123", true, "2023-08-01");
@@ -9,6 +13,7 @@ int main() {
     library[3].setBookDetails("Networking", "Henry Lee", "013", true, "2024-06-04");
     library[4].setBookDetails("Cyber Security", "Luis Jones", "633", true, "2024-02-05");
 
+    // Sort books by ISBN
     Book::sortBookData(library, 5);
 
     string searchISBN;
@@ -17,7 +22,11 @@ int main() {
         cin >> searchISBN;
 
         if (searchISBN == "0") {
-            for (int i = 0; i < 5; i++) library[i].displayBookDetails();
+            cout << "\n---- FINAL BOOK LIST ----";
+            for (int i = 0; i < 5; i++) {
+                library[i].displayDetails();
+                cout << "\n";
+            }
             break;
         }
 
@@ -35,5 +44,3 @@ int main() {
 
     return 0;
 }
-
-
