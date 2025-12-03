@@ -10,65 +10,57 @@ using namespace std;
 // =====================
 class Book {
 protected:
-   string title;
-   string author;
-   string ISBN;
-   bool availability = true; // Initialise availability to true
-   string dateAdd;
+    string title;
+    string author;
+    string ISBN;
+    bool availability = true;
+    string dateAdd;
 
 public:
-   Book() : title(""), author(""), ISBN(""), availability(true), dateAdd("") {} // Initialise all members
+    Book() {}
 
-   // Set book details
-   void setBookDetails(string t, string a, string i, bool avail, string date) {
-       title = t;
-       author = a;
-       ISBN = i;
-       availability = avail;
-       dateAdd = date;
-   }
+    virtual ~Book() {} // IMPORTANT for polymorphism
 
-   // Virtual display
-   virtual void displayDetails() {
-       cout << "\n----- BOOK DETAILS -----";
-       cout << "\nTitle        : " << title;
-       cout << "\nAuthor       : " << author;
-       cout << "\nISBN         : " << ISBN;
-       cout << "\nAvailable    : " << (availability ? "Yes" : "No");
-       cout << "\nDate Added   : " << dateAdd;
-   }
+    void setBookDetails(string t, string a, string i, bool avail, string date) {
+        title = t;
+        author = a;
+        ISBN = i;
+        availability = avail;
+        dateAdd = date;
+    }
 
-   // Borrow book
-   void borrowBook() {
-       if (availability) {
-           availability = false;
-           cout << "Success: Book borrowed.\n";
-       }
-       else {
-           cout << "Borrowed: Book is not available.\n";
-       }
-   }
+    virtual void displayDetails() {
+        cout << "\n----- BOOK DETAILS -----";
+        cout << "\nTitle        : " << title;
+        cout << "\nAuthor       : " << author;
+        cout << "\nISBN         : " << ISBN;
+        cout << "\nAvailable    : " << (availability ? "Yes" : "No");
+        cout << "\nDate Added   : " << dateAdd;
+    }
 
-   // Return book
-   void returnBook() {
-       availability = true;
-       cout << "Success: Book returned.\n";
-   }
+    void borrowBook() {
+        if (availability) {
+            availability = false;
+            cout << "Success: Book borrowed.\n";
+        }
+        else {
+            cout << "Borrowed: Book is not available.\n";
+        }
+    }
 
-   string getISBN() { return ISBN; }
+    string getISBN() { return ISBN; }
 
-   // Bubble Sort by ISBN
-   static void sortBookData(Book arr[], int size) {
-       for (int i = 0; i < size - 1; i++) {
-           for (int j = 0; j < size - i - 1; j++) {
-               if (arr[j].ISBN > arr[j + 1].ISBN) {
-                   Book temp = arr[j];
-                   arr[j] = arr[j + 1];
-                   arr[j + 1] = temp;
-               }
-           }
-       }
-   }
+    static void sortBookData(Book* arr[], int size) {
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = 0; j < size - i - 1; j++) {
+                if (arr[j]->getISBN() > arr[j + 1]->getISBN()) {
+                    Book* temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    }
 };
 
 // =====================
@@ -76,15 +68,15 @@ public:
 // =====================
 class EBook : public Book {
 private:
-   string licenseEndDate;
+    string licenseEndDate;
 
 public:
-   void setLicense(string d) { licenseEndDate = d; }
+    void setLicense(string d) { licenseEndDate = d; }
 
-   void displayDetails() override {
-       Book::displayDetails();
-       cout << "\nLicense End  : " << licenseEndDate;
-   }
+    void displayDetails() override {
+        Book::displayDetails();
+        cout << "\nLicense End  : " << licenseEndDate;
+    }
 };
 
 // =====================
@@ -92,15 +84,15 @@ public:
 // =====================
 class HardcopyBook : public Book {
 private:
-   string shelfNumber;
+    string shelfNumber;
 
 public:
-   void setShelf(string s) { shelfNumber = s; }
+    void setShelf(string s) { shelfNumber = s; }
 
-   void displayDetails() override {
-       Book::displayDetails();
-       cout << "\nShelf Number : " << shelfNumber;
-   }
+    void displayDetails() override {
+        Book::displayDetails();
+        cout << "\nShelf Number : " << shelfNumber;
+    }
 };
 
 #endif
