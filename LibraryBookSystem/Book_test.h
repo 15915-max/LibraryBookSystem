@@ -1,4 +1,3 @@
-// Book.h
 #ifndef BOOK_H
 #define BOOK_H
 
@@ -10,10 +9,15 @@ private:
     string title;
     string author;
     int isbn;
+    bool availability;
+    string dateAdd;
 
 public:
-    Book(string t, string a, int i);
+    Book();
+    Book(string t, string a, int i, bool avail, string date);
+
     int getISBN() const;
+    void display() const;
 };
 
 #endif
