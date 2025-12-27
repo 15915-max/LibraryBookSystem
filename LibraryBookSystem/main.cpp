@@ -35,9 +35,22 @@ int main() {
     Book b3("Algorithms", "Robert Sedgewick", 736, true, "2021-02-21");
 
     // Incorrect book information (test cases)
-    Book w1("12345", "?", -1, true, "2033-01-01");
-    Book w2("", "", 0, false, "2022-13-01");
-    Book w3("@@@", "", 999999, false, "Monday");
+    cout << "\n=== Incorrect Book Initialization (Validation Test) ===" << endl;
+
+    Book invalidBook;
+
+    bool result = invalidBook.setBookDetails(
+        "12345",        // invalid title
+        "?",            // invalid author
+        -5,             // invalid ISBN
+        true,
+        "Monday"        // invalid date
+    );
+
+    if (!result) {
+        cout << "Incorrect book initialization failed as expected." << endl;
+    }
+
 
     // Arrays with different initial orders
     Book ascending[3]  = { b1, b3, b2 };
