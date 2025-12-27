@@ -12,9 +12,15 @@ private:
     bool availability;
     string dateAdd;
 
+    // ⭐ ADDED: helper validation function
+    bool isValidISBN(int i) const;
+
 public:
     Book();
     Book(string t, string a, int i, bool avail, string date);
+
+    
+    bool setBookDetails(string t, string a, int i, bool avail, string date);
 
     int getISBN() const;
     void display() const;
