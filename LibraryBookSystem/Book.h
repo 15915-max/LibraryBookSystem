@@ -12,7 +12,6 @@ private:
     bool availability;
     string dateAdd;
 
-    // ⭐ ADDED: helper validation function
     bool isValidISBN(int i) const;
 
 public:
