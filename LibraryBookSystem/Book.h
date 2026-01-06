@@ -13,12 +13,12 @@ private:
     string dateAdd;
 
     bool isValidISBN(int i) const;
+    bool isValidDate(const string& date) const;  
 
 public:
     Book();
     Book(string t, string a, int i, bool avail, string date);
 
-    
     bool setBookDetails(string t, string a, int i, bool avail, string date);
 
     int getISBN() const;
