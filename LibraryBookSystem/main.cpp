@@ -3,7 +3,7 @@
 
 using namespace std;
 
-// Simple Quick Sort inside main.cpp
+// Simple Quick Sort based on ISBN
 void quickSort(Book arr[], int low, int high) {
     if (low >= high) return;
 
@@ -28,31 +28,27 @@ void quickSort(Book arr[], int low, int high) {
 }
 
 int main() {
-
-    // Correct book information
+    cout << "=== Adding Correct Books ===" << endl;
     Book b1("Introduction of IT", "Lara Smith", 123, true, "2023-08-01");
     Book b2("C++ Programming", "Wayne Kevin", 856, false, "2021-02-21");
     Book b3("Algorithms", "Robert Sedgewick", 736, true, "2021-02-21");
 
-    // Incorrect book information (test cases)
-    cout << "\n=== Incorrect Book Initialization (Validation Test) ===" << endl;
+    b1.display();
+    b2.display();
+    b3.display();
 
-    Book invalidBook;
+    cout << "\n=== Incorrect Books (Testing Validation) ===" << endl;
 
-    bool result = invalidBook.setBookDetails(
-        "12345",        // invalid title
-        "?",            // invalid author
-        -5,             // invalid ISBN
-        true,
-        "Monday"        // invalid date
-    );
+    Book invalidBook1; 
+    invalidBook1.setBookDetails("Introduction of IT", "Lara Smith", 123, true, "Monday");
 
-    if (!result) {
-        cout << "Incorrect book initialization failed as expected." << endl;
-    }
+    Book invalidBook2; 
+    invalidBook2.setBookDetails("C++ Programming", "", 856, true, "13-01-2025");
 
+    Book invalidBook3; 
+    invalidBook3.setBookDetails("Algorithms", "Robert Sedgewick", -1, true, "2021-02-21");
 
-    // Arrays with different initial orders
+   // Arrays with different initial orders
     Book ascending[3]  = { b1, b3, b2 };
     Book descending[3] = { b2, b3, b1 };
     Book mixed[3]      = { b3, b1, b2 };
